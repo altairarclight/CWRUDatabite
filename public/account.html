@@ -1,46 +1,99 @@
 <!DOCTYPE html>
+<html lang="en">
 <meta charset="utf-8">
 <meta name="description" content="UI-5">
 <title>Account Page</title>
+<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/index.css">
 <link rel="stylesheet" href="./css/account.css">
 
-<div id="wrapper" class="grid-container">
-  <div class="main"></div>
-  <div class="header"></div>
-  <div class="footer"></div>
-  <div class="password">
-    <div>
-      <br>
-      <input type="text" name="" value="">
-      <br><br>
-      <input type="button" name="" value="Change Password">
+<div id="wrapper" class="container">
+  <div class="header row"></div>
+
+  <div class="row">
+    <div class="col-s12">
+
+      <div class="row mt-5">
+        <form>
+          <div class="mb-3">
+            <label for="changePassword" class="form-label">Old Password</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="changePassword" class="form-label">New Password</label>
+            <input type="password" class="form-control" id="changePassword">
+            <div id="emailHelp" class="form-text">Must be at least 8 characters</div>
+          </div>
+          <button type="submit" class="btn btn-primary">Change Password</button>
+        </form>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-s12">
+          <h2 class="text-center">Datasets</h2>
+        </div>
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Dataset</th>
+              <th scope="col">Allow View</th>
+              <th scope="col">Allow Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <td>@fat</td>
+              <td>Larry the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-s12">
+          <h2 class="text-center">Manageable Users</h2>
+        </div>
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+            <tr>
+              <th scope="col">User</th>
+              <th scope="col">Upgrade to Admin</th>
+              <th scope="col">Delete Account</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <td>@fat</td>
+              <td>Larry the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+
+    <div class="footer row"></div>
   </div>
-  <div class="datasets-header">
-    <h1 class="center">Datasets</h1>
-  </div>
-  <div class="datasets bordered-rounded"></div>
-  <div class="manageable-users bordered-rounded"></div>
-  <div class="dataset bordered-rounded">
-    <p class="center">Dataset</p>
-  </div>
-  <div class="allow-view bordered-rounded">
-    <p class="center">Allow View</p>
-  </div>
-  <div class="allow-edit bordered-rounded">
-    <p class="center">Allow Edit</p>
-  </div>
-  <div class="manageable-users-header">
-    <h1 class="center">Manageable Users</h1>
-  </div>
-  <div class="user bordered-rounded">
-    <p class="center">User</p>
-  </div>
-  <div class="upgrade-to-admin bordered-rounded">
-    <p class="center">Upgrade to Admin</p>
-  </div>
-  <div class="delete-account bordered-rounded">
-    <p class="center">Delete Account</p>
-  </div>
-</div>
+
+  </html>
