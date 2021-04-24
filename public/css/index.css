@@ -1,0 +1,25 @@
+/* global styles applied to all elements */
+body {
+  font-family: sans-serif;
+}
+
+/* use when testing to see element alignment */
+.inspect * {
+  border: 1px solid red;
+}
+
+/* center align text */
+.center {
+  text-align: center;
+}
+
+/* set black border */
+.bordered {
+  border: 1px solid black;
+}
+
+/* set black rounded border */
+.bordered-rounded {
+  border: 1px solid black;
+  border-radius: 10px;
+}
