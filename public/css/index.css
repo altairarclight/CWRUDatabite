@@ -1,0 +1,9 @@
+/* global styles applied to all elements */
+body {
+  font-family: sans-serif;
+}
+
+/* use when testing to see element alignment */
+.inspect * {
+  border: 1px solid red;
+}
