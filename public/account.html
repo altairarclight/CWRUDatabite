@@ -7,6 +7,13 @@
 <link rel="stylesheet" href="./css/index.css">
 <link rel="stylesheet" href="./css/account.css">
 
+<!-- bootstrap drop down menu -->
+<script src="./bootstrap/js/popper.min.js" charset="utf-8"></script>
+<!-- dynamic DOM creator -->
+<script src="./makel-dom/makel-dom.js" charset="utf-8"></script>
+
+<script src="./bootstrap/js/bootstrap.min.js"></script>
+
 <div id="wrapper" class="container">
   <div class="header row"></div>
 
@@ -32,29 +39,28 @@
         <div class="col-s12">
           <h2 class="text-center">Datasets</h2>
         </div>
-        <table class="table table-bordered table-striped table-hover">
+        <table id="datasetstable" class="table table-bordered table-striped table-hover">
           <thead>
             <tr>
               <th scope="col">Dataset</th>
-              <th scope="col">Allow View</th>
-              <th scope="col">Allow Edit</th>
+              <th scope="col">Sharing</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>@fat</td>
-              <td>Larry the Bird</td>
-              <td>@twitter</td>
+              <td>
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Private
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">Private</a></li>
+                    <li><a class="dropdown-item" href="#">View Only</a></li>
+                    <li><a class="dropdown-item" href="#">Edit</a></li>
+                  </ul>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -95,5 +101,8 @@
 
     <div class="footer row"></div>
   </div>
+</div>
 
-  </html>
+<script src="./js/account.js"></script>
+
+</html>
