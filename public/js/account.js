@@ -1,5 +1,27 @@
 // scripts for account.html
 
+// check whether the password can be sent to the server
+function passwordValidateSuccess() {
+  let oldPass = dom('#oldPassword')
+  let newPass = dom('#newPassword')
+  let newPass2 = dom('#newPassword2')
+  let errorPrompt = dom('#passwordError')
+  if (oldPass.value != "test") {
+    errorPrompt.innerText = "Incorrect password"
+    oldPass.classList.toggle('active')
+    return false
+  }
+  if (newPass.value != newPass2.value) {
+    errorPrompt.innerText = "Passwords do not match"
+    return false
+  }
+  if (newPass.value.length < 8 || newPass2.value.length < 8) {
+    errorPrompt.innerText = "New password must be at least 8 characters"
+    return false
+  }
+  return true
+}
+
 // dynamically adding datasets to Datasets table
 // id: DOM Element ID (must be unique)
 // name: dataset name
@@ -51,7 +73,6 @@ function getObserver(domElement) {
   return dom(`#${domElement.getAttribute('data-mutate')}`)
 }
 
-
 /* ------------------- Event Listeners ------------------- */
 
 // change dropdown label on click
@@ -70,3 +91,7 @@ doms('.account-upgrade').forEach(e => e.addEventListener('click', function() {
   this.classList.toggle('disabled')
   getObserver(this).innerText = "Admin"
 }))
+
+dom('#changePassword').addEventListener('click', function() {
+  if (passwordValidateSuccess()) {} // send to server
+})

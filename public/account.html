@@ -24,14 +24,19 @@
         <form>
           <div class="mb-3">
             <label for="changePassword" class="form-label">Old Password</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="password" id="oldPassword" class="form-control">
           </div>
           <div class="mb-3">
             <label for="changePassword" class="form-label">New Password</label>
-            <input type="password" class="form-control" id="changePassword">
-            <div id="emailHelp" class="form-text">Must be at least 8 characters</div>
+            <input type="password" id="newPassword" class="form-control">
+            <div class="form-text">Must be at least 8 characters</div>
           </div>
-          <button type="submit" class="btn btn-primary">Change Password</button>
+          <div class="mb-3">
+            <label for="changePassword" class="form-label">Re-enter Password</label>
+            <input type="password" id="newPassword2" class="form-control">
+            <div class="form-text text-danger" id="passwordError"></div>
+          </div>
+          <button id="changePassword" type="submit" class="btn btn-primary">Change Password</button>
         </form>
       </div>
 
