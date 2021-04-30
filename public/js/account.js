@@ -31,7 +31,7 @@ function addDataSetEntry(id, name, sharing) {
   <td>${name}</td>
   <td>
   <div class="dropdown">
-  <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="a${id}" data-bs-toggle="dropdown" aria-expanded="false">
+  <button class="btn btn-outline-primary dropdown-toggle" type="button" id="a${id}" data-bs-toggle="dropdown" aria-expanded="false">
   ${sharing}
   </button>
   <ul class="dropdown-menu" aria-labelledby="a${id}">
