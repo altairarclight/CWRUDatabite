@@ -55,7 +55,7 @@ function addManageableUserEntry(id, name, accountType) {
   <td id="b${id}" class="account-type">${accountType}</td>
   <td class="hidden">
   <button type="button" data-mutate="b${id}" class="btn btn-outline-primary account-upgrade">Upgrade to Admin</button>
-  <button type="button" data-mutate="a${id}" class="btn btn-danger account-delete">Delete Account</button>
+  <button type="button" data-mutate="a${id}" data-bs-toggle="modal" data-bs-target="#deleteAccountModal" class="btn btn-danger account-delete">Delete Account</button>
   </td>
   </tr>`
 }
@@ -63,8 +63,8 @@ function addManageableUserEntry(id, name, accountType) {
 // TODO: replace with database data
 addDataSetEntry(10, "Daves", "Private")
 addManageableUserEntry(0, "Constantino", "Company User")
-addManageableUserEntry(1, "Constantino", "Company User")
-addManageableUserEntry(2, "Constantino", "Company User")
+addManageableUserEntry(1, "Constantino's", "Company User")
+addManageableUserEntry(2, "Constantino'ss", "Company User")
 
 
 /* ------------------- Helpers ------------------- */
@@ -83,8 +83,10 @@ doms('.dropdown-item').forEach(e => e.addEventListener('click', function() {
 
 // delete account
 doms('.account-delete').forEach(e => e.addEventListener('click', function() {
-  let confirmed = window.confirm('Are you sure you want to delete your account? This action is permanent.')
-  if (confirmed) getObserver(this).remove()
+  dom('#modalDeleteAccount').addEventListener('click', () => {
+    this.closest('tr').remove()
+    bootstrap.Modal.getInstance(dom('#deleteAccountModal')).hide()
+  })
 }))
 
 // upgrade user to admin
