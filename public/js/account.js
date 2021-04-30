@@ -53,7 +53,7 @@ function addManageableUserEntry(id, name, accountType) {
   <tr id="a${id}">
   <td>${name}</td>
   <td id="b${id}" class="account-type">${accountType}</td>
-  <td>
+  <td class="hidden">
   <button type="button" data-mutate="b${id}" class="btn btn-secondary account-upgrade">Upgrade to Admin</button>
   <button type="button" data-mutate="a${id}" class="btn btn-secondary account-delete">Delete Account</button>
   </td>
@@ -93,4 +93,8 @@ doms('.account-upgrade').forEach(e => e.addEventListener('click', function() {
 
 dom('#changePassword').addEventListener('click', function() {
   if (passwordValidateSuccess()) {} // send to server
+})
+
+dom('#editmanageableuserstable').addEventListener('click', function() {
+  doms('#manageableuserstable .hidden').forEach(e => e.classList.remove('hidden'))
 })

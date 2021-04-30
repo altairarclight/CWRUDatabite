@@ -7,3 +7,7 @@ body {
 .inspect * {
   border: 1px solid red;
 }
+
+.hidden {
+  display: none !important;
+}
