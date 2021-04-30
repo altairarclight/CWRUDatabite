@@ -6,17 +6,16 @@ function passwordValidateSuccess() {
   let newPass = dom('#newPassword')
   let newPass2 = dom('#newPassword2')
   let errorPrompt = dom('#passwordError')
-  if (oldPass.value != "test") {
-    errorPrompt.innerText = "Incorrect password"
-    oldPass.classList.toggle('active')
-    return false
-  }
   if (newPass.value != newPass2.value) {
     errorPrompt.innerText = "Passwords do not match"
     return false
   }
   if (newPass.value.length < 8 || newPass2.value.length < 8) {
     errorPrompt.innerText = "New password must be at least 8 characters"
+    return false
+  }
+  if (oldPass.value != "test") {
+    errorPrompt.innerText = "Incorrect password"
     return false
   }
   return true
