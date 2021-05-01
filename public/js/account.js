@@ -48,11 +48,20 @@ function addDataSetEntry(id, name, sharing) {
 // id: DOM Element ID (must be unique)
 // name: username
 // accountType: type of user account
-function addManageableUserEntry(id, name, accountType) {
+function addManageableUserEntry(id, name, accountType, sharing) {
   dom('#manageableuserstable').innerHTML += `
   <tr id="a${id}">
   <td>${name}</td>
   <td id="b${id}" class="account-type">${accountType}</td>
+  <td class="hidden">
+  <button class="btn btn-outline-primary dropdown-toggle" type="button" id="c${id}" data-bs-toggle="dropdown" aria-expanded="false">
+  ${sharing}
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="c${id}">
+  <li><a class="dropdown-item" data-mutate="c${id}">All</a></li>
+  <li><a class="dropdown-item" data-mutate="c${id}">None</a></li>
+  <li><a class="dropdown-item user-view-option-modal" data-bs-toggle="modal" data-bs-target="#userViewOptions" data-mutate="c${id}">Advanced</a></li>
+  </td>
   <td class="hidden">
   <button type="button" data-mutate="b${id}" class="btn btn-outline-primary account-upgrade">Upgrade to Admin</button>
   <button type="button" data-mutate="a${id}" data-bs-toggle="modal" data-bs-target="#deleteAccountModal" class="btn btn-danger account-delete">Delete Account</button>
@@ -61,10 +70,9 @@ function addManageableUserEntry(id, name, accountType) {
 }
 
 // TODO: replace with database data
-addDataSetEntry(10, "Daves", "Private")
-addManageableUserEntry(0, "Constantino", "Company User")
-addManageableUserEntry(1, "Constantino's", "Company User")
-addManageableUserEntry(2, "Constantino'ss", "Company User")
+addManageableUserEntry(0, "Constantino", "Company User", "All")
+addManageableUserEntry(1, "Constantino's", "Company User", "None")
+addManageableUserEntry(2, "Constantino'ss", "Company User", "All")
 
 
 /* ------------------- Helpers ------------------- */
@@ -75,11 +83,16 @@ function getObserver(domElement) {
 }
 
 // prompts a modal with custom text
-// confirmFn is run when user confirms the prompt
+// modalDOM: bootstrap modal template
+// titleDOM: HTML element to be displayed as modal title
+// bodyDOM: HTML element to be displayed as modal body
+// cancelText: text for the 'cancel' button (can be null if button is absent)
+// confirmText: text for the 'confirm' button
+// confirmFn: function that runs when user press the 'confirm' button
 function promptModal(modalDOM, titleDOM, bodyDOM, cancelText, confirmText, confirmFn) {
   dom(modalDOM, '.modal-header').innerHTML = titleDOM.outerHTML
   dom(modalDOM, '.modal-body').innerHTML = bodyDOM.outerHTML
-  dom(modalDOM, '.modal-footer [data-my-btn-type="cancel"]').innerText = cancelText
+  if (cancelText != null) dom(modalDOM, '.modal-footer [data-my-btn-type="cancel"]').innerText = cancelText
   dom(modalDOM, '[data-my-btn-type="confirm"]').innerText = confirmText
   dom(modalDOM, '[data-my-btn-type="confirm"]').onclick = confirmFn
 }
@@ -114,3 +127,24 @@ dom('#changePassword').addEventListener('click', function() {
 dom('#editmanageableuserstable').addEventListener('click', function() {
   doms('#manageableuserstable .hidden').forEach(e => e.classList.remove('hidden'))
 })
+
+doms('.user-view-option-modal').forEach(e => e.addEventListener('click', function() {
+  let datasets = makel('table#datasetstable.table.table-bordered.table-hover')
+  datasets.innerHTML = `
+  <thead>
+  <tr>
+  <th scope="col">Dataset</th>
+  <th scope="col">Sharing</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>`
+
+  promptModal(dom('#userViewOptions'),
+  makel('h5', 'User View Options'),
+  datasets,
+  null,
+  "Save")
+
+  addDataSetEntry(10, "Daves", "Private")
+}))

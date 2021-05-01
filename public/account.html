@@ -15,18 +15,22 @@
 <script src="./bootstrap/js/bootstrap.min.js"></script>
 
 <div class="topnav">
-    <a class="active" href="main.html">CWRU Databite</a>
-    <a href="account.html">Account</a>
-    <a href="documentation.html">Tutorial</a>
-    <a href="home.html">Log Out</a>
+  <a class="active" href="main.html">CWRU Databite</a>
+  <a href="account.html">Account</a>
+  <a href="documentation.html">Tutorial</a>
+  <a href="home.html">Log Out</a>
 </div>
 
 <div id="wrapper" class="container">
-  <div class="header row"></div>
-
   <div class="row">
-    <div class="col-s12">
-
+    <div class="col-2 mt-5 me-4 border-end">
+      <nav class="nav nav-pills flex-column">
+        <a class="nav-link active" href="#">Database Access</a>
+        <a class="nav-link" href="#">Manage Company</a>
+        <a class="nav-link" href="#">My Account</a>
+      </nav>
+    </div>
+    <div class="col-9 ms-5">
       <div class="row mt-5">
         <form>
           <div class="mb-3">
@@ -48,22 +52,7 @@
       </div>
 
       <div class="row mt-5">
-        <div class="col-s12">
-          <h2 class="text-center">Datasets</h2>
-        </div>
-        <table id="datasetstable" class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Dataset</th>
-              <th scope="col">Sharing</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-
-      <div class="row mt-5">
-        <div class="col-s12">
+        <div class="col-12">
           <h2 class="text-center">Manageable Users</h2>
           <button type="button" id="editmanageableuserstable" class="btn btn-secondary btn mb-1">Edit</button>
         </div>
@@ -72,15 +61,15 @@
             <tr>
               <th scope="col">User</th>
               <th>Account Type</th>
+              <th class="hidden">View Option</th>
               <th class="hidden">Actions</th>
             </tr>
           </thead>
           <tbody></tbody>
         </table>
       </div>
-    </div>
 
-    <div class="footer row"></div>
+    </div>
   </div>
 </div>
 
@@ -104,5 +93,23 @@
     </div>
   </div>
 </div>
+
+<!-- modal for setting user view options -->
+<div class="modal fade" id="userViewOptions" tabindex="-1" aria-labelledby="userViewOptions" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">User View Option</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-my-btn-type="confirm" data-bs-dismiss="modal">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 </html>
