@@ -76,9 +76,9 @@ function getObserver(domElement) {
 
 // prompts a modal with custom text
 // confirmFn is run when user confirms the prompt
-function promptModal(modalDOM, title, body, cancelText, confirmText, confirmFn) {
-  dom(modalDOM, '.modal-title').innerText = title
-  dom(modalDOM, '.modal-body').innerText = body
+function promptModal(modalDOM, titleHTML, bodyHTML, cancelText, confirmText, confirmFn) {
+  dom(modalDOM, '.modal-header').innerHTML = titleHTML.outerHTML
+  dom(modalDOM, '.modal-body').innerHTML = bodyHTML.outerHTML
   dom(modalDOM, '.modal-footer [data-my-btn-type="cancel"]').innerText = cancelText
   dom(modalDOM, '[data-my-btn-type="confirm"]').innerText = confirmText
   dom(modalDOM, '[data-my-btn-type="confirm"]').onclick = () => {
@@ -97,10 +97,10 @@ doms('.dropdown-item').forEach(e => e.addEventListener('click', function() {
 // delete account
 doms('.account-delete').forEach(e => e.addEventListener('click', function() {
   promptModal(dom('#deleteAccountModal'),
-  "Are you sure you want to delete this account?",
-  "This action is permanent.",
-  "Cancel",
-  "Yes, I want to delete this account",
+  makel('h5.modal-title', 'Are you sure you want to delete this account?'),
+  makel('p', 'This action is permanent.'),
+  'Cancel',
+  'Yes, I want to delete this account',
   () => { this.closest('tr').remove() })
 }))
 
