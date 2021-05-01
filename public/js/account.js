@@ -74,6 +74,19 @@ function getObserver(domElement) {
   return dom(`#${domElement.getAttribute('data-mutate')}`)
 }
 
+// prompts a modal with custom text
+// confirmFn is run when user confirms the prompt
+function promptModal(modalDOM, title, body, cancelText, confirmText, confirmFn) {
+  dom(modalDOM, '.modal-title').innerText = title
+  dom(modalDOM, '.modal-body').innerText = body
+  dom(modalDOM, '.modal-footer [data-my-btn-type="cancel"]').innerText = cancelText
+  dom(modalDOM, '[data-my-btn-type="confirm"]').innerText = confirmText
+  dom(modalDOM, '[data-my-btn-type="confirm"]').onclick = () => {
+    confirmFn()
+    bootstrap.Modal.getInstance(modalDOM).hide()
+  }
+}
+
 /* ------------------- Event Listeners ------------------- */
 
 // change dropdown label on click
@@ -83,10 +96,12 @@ doms('.dropdown-item').forEach(e => e.addEventListener('click', function() {
 
 // delete account
 doms('.account-delete').forEach(e => e.addEventListener('click', function() {
-  dom('#modalDeleteAccount').addEventListener('click', () => {
-    this.closest('tr').remove()
-    bootstrap.Modal.getInstance(dom('#deleteAccountModal')).hide()
-  })
+  promptModal(dom('#deleteAccountModal'),
+  "Are you sure you want to delete this account?",
+  "This action is permanent.",
+  "Cancel",
+  "Yes, I want to delete this account",
+  () => { this.closest('tr').remove() })
 }))
 
 // upgrade user to admin
