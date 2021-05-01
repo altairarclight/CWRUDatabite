@@ -4,3 +4,5 @@
 #datasetstable th { width: 50% !important; }
 
 #editmanageableuserstable { float: right; }
+
+#sidetab .nav-link { cursor: pointer; }

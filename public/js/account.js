@@ -148,3 +148,16 @@ doms('.user-view-option-modal').forEach(e => e.addEventListener('click', functio
 
   addDataSetEntry(10, "Daves", "Private")
 }))
+
+doms('#sidetab .nav-link').forEach(e => e.addEventListener('click', function() {
+  doms('#sidetab .nav-link').forEach(f => {
+    f.classList.remove('active')
+  })
+  this.classList.add('active')
+
+  let tab = getObserver(this)
+  doms('.tab').forEach(g => {
+    g.classList.add('hidden')
+  })
+  tab.classList.remove('hidden')
+}))
