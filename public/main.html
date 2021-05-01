@@ -3,20 +3,46 @@
 <meta charset="utf-8">
 <meta name="description" content="UI-2">
 <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="./css/index.css">
+<link rel="stylesheet" href="./css/main.css">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
  
 <body>
     <title>Main Page</title>
 </body>
 
-<div class="container">
+<div class="topnav">
+    <a class="active" href="main.html">CWRU Databite</a>
+    <a href="account.html">Account</a>
+    <a href="documentation.html">Tutorial</a>
+    <a href="home.html">Log Out</a>
+</div>
 
-    <div class="content-panel">
+<div class="container">
+      <div class="content-panel">
         <div class="content-header-wrapper">
             <h2 class="title">Datasets</h2>
             <div class="actions">
-                <button class="btn btn-success"><i class="fa fa-plus"></i> Upload New Item</button>
+                <button class="btn btn-success" onclick="openForm()"><i class="fa fa-plus"></i> Upload New Item</button>
+                <div class="form-popup" id = "myForm">
+                    <div class="panel panel-default">
+                    <div class="panel-body">
+                    
+                    <!-- File Drop Area -->
+                    <div class="drag-area" id ="upload">
+                        <header>Drag & Drop to Upload File</header>
+                        <span>OR</span>
+                        <button>Browse Files</button>
+                        <input type="file" hidden>
+                      </div>
+                      <script src="./js/main.js"></script>
+
+                    <!-- Close Button -->
+                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>                   
+                </div>
             </div>
         </div>
 
@@ -113,6 +139,6 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div>  
     </div>
 </div>
