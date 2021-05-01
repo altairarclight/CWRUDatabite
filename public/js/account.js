@@ -70,6 +70,7 @@ function addManageableUserEntry(id, name, accountType, sharing) {
 }
 
 // TODO: replace with database data
+addDataSetEntry(10, "Daves", "Private")
 addManageableUserEntry(0, "Constantino", "Company User", "All")
 addManageableUserEntry(1, "Constantino's", "Company User", "None")
 addManageableUserEntry(2, "Constantino'ss", "Company User", "All")

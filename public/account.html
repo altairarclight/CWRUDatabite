@@ -25,12 +25,29 @@
   <div class="row">
     <div id="sidetab" class="col-2 mt-5 me-4 border-end">
       <nav class="nav nav-pills flex-column">
-        <a class="nav-link active" data-mutate="tab0">Database Access</a>
+        <a class="nav-link active" data-mutate="tab3">View</a>
+        <a class="nav-link" data-mutate="tab0">Database Access</a>
         <a class="nav-link" data-mutate="tab1">Manage Company</a>
         <a class="nav-link" data-mutate="tab2">My Account</a>
       </nav>
     </div>
     <div class="col-9 ms-5">
+      <div id="tab3" class="tab mt-5">
+        <div class="row mt-5">
+          <div class="col-s12">
+            <h2 class="text-center">Datasets</h2>
+          </div>
+          <table id="datasetstable" class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Dataset</th>
+                <th scope="col">Sharing</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
       <!-- My Account -->
       <div id="tab2" class="hidden tab mt-5">
         <div class="card mt-5">
@@ -70,7 +87,7 @@
       </div>
 
       <!-- Database Access -->
-      <div id="tab0" class="tab mt-5">
+      <div id="tab0" class="hidden tab mt-5">
         <div class="col-12">
           <h2 class="text-center">Manageable Users</h2>
           <button type="button" id="editmanageableuserstable" class="btn btn-secondary btn mb-1">Edit</button>
