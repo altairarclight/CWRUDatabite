@@ -81,10 +81,7 @@ function promptModal(modalDOM, titleDOM, bodyDOM, cancelText, confirmText, confi
   dom(modalDOM, '.modal-body').innerHTML = bodyDOM.outerHTML
   dom(modalDOM, '.modal-footer [data-my-btn-type="cancel"]').innerText = cancelText
   dom(modalDOM, '[data-my-btn-type="confirm"]').innerText = confirmText
-  dom(modalDOM, '[data-my-btn-type="confirm"]').onclick = () => {
-    confirmFn()
-    bootstrap.Modal.getInstance(modalDOM).hide()
-  }
+  dom(modalDOM, '[data-my-btn-type="confirm"]').onclick = confirmFn
 }
 
 /* ------------------- Event Listeners ------------------- */
