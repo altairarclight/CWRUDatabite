@@ -7,22 +7,11 @@ import Interface.IUser;
 
 public class User implements IUser {
 
-    String username;
-    String password;
-    String companyId;
-
-    public User(String uname, String pswrd, String compId) {
-        this.username = uname;
-        password = pswrd;
-        companyId = compId;
-    }
-
     @Override
-    public boolean userRegistration() {
+    public boolean userRegistration(String username, String password, String companyId) {
         // Save username, password, companyId to user table in DB by calling Table class
         Table userTable = new Table();
 
-        // Might not need this here if its done outside of this method
         MessageDigest hasher;
         String passwordHash = "";
         try {
@@ -34,37 +23,23 @@ public class User implements IUser {
             e.printStackTrace();
         }
 
+        userTable.insertUser(username, passwordHash, companyId);
         // return true; If operation successful
-        return userTable.insertUser(username, passwordHash, companyId);
-        ;
+        return false;
     }
 
     @Override
-    public boolean userDelete() {
+    public boolean userDelete(String username, String companyId) {
         // Delete user with username and company Id
-        Table userTable = new Table();
-
         // return true; If successful
-        return userTable.delete(username, companyId);
-        ;
+        return false;
     }
 
     @Override
-    public boolean userModify(String uname, String pswrd, String compId) {
+    public boolean userModify(String username, String password, String companyId) {
         // Modify an existing user
-        Table userTable = new Table();
-
         // return true; if successful
-        return userTable.modify(username, companyId, uname, pswrd, compId);
-        ;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getCompanyId() {
-        return companyId;
+        return false;
     }
 
 }
