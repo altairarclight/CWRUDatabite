@@ -76,9 +76,9 @@ function getObserver(domElement) {
 
 // prompts a modal with custom text
 // confirmFn is run when user confirms the prompt
-function promptModal(modalDOM, titleHTML, bodyHTML, cancelText, confirmText, confirmFn) {
-  dom(modalDOM, '.modal-header').innerHTML = titleHTML.outerHTML
-  dom(modalDOM, '.modal-body').innerHTML = bodyHTML.outerHTML
+function promptModal(modalDOM, titleDOM, bodyDOM, cancelText, confirmText, confirmFn) {
+  dom(modalDOM, '.modal-header').innerHTML = titleDOM.outerHTML
+  dom(modalDOM, '.modal-body').innerHTML = bodyDOM.outerHTML
   dom(modalDOM, '.modal-footer [data-my-btn-type="cancel"]').innerText = cancelText
   dom(modalDOM, '[data-my-btn-type="confirm"]').innerText = confirmText
   dom(modalDOM, '[data-my-btn-type="confirm"]').onclick = () => {
