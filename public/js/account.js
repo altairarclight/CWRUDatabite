@@ -35,9 +35,9 @@ function addDataSetEntry(id, name, sharing) {
   ${sharing}
   </button>
   <ul class="dropdown-menu" aria-labelledby="a${id}">
-  <li><a class="dropdown-item" data-mutate="a${id}" href="#">Private</a></li>
-  <li><a class="dropdown-item" data-mutate="a${id}" href="#">View Only</a></li>
-  <li><a class="dropdown-item" data-mutate="a${id}" href="#">Edit</a></li>
+  <li><a class="dropdown-item" data-mutate="a${id}">Private</a></li>
+  <li><a class="dropdown-item" data-mutate="a${id}">View Only</a></li>
+  <li><a class="dropdown-item" data-mutate="a${id}">Edit</a></li>
   </ul>
   </div>
   </td>

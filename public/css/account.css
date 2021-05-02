@@ -5,4 +5,4 @@
 
 #editmanageableuserstable { float: right; }
 
-#sidetab .nav-link { cursor: pointer; }
+#sidetab .nav-link, .dropdown-item { cursor: pointer; }
