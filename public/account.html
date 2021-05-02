@@ -32,22 +32,24 @@
       </nav>
     </div>
     <div class="col-9 ms-5">
+      <!-- View -->
       <div id="tab3" class="tab mt-5">
         <div class="row mt-5">
           <div class="col-s12">
             <h2 class="text-center">Datasets</h2>
           </div>
-          <table id="datasetstable" class="table table-bordered table-hover">
+          <table id="userViewOptions" class="table table-bordered table-hover">
             <thead>
               <tr>
-                <th scope="col">Dataset</th>
-                <th scope="col">Sharing</th>
+                <th scope="col">User</th>
+                <th scope="col">View Option</th>
               </tr>
             </thead>
             <tbody></tbody>
           </table>
         </div>
       </div>
+      
       <!-- My Account -->
       <div id="tab2" class="hidden tab mt-5">
         <div class="card mt-5">
@@ -97,7 +99,6 @@
             <tr>
               <th scope="col">User</th>
               <th>Account Type</th>
-              <th class="hidden">View Option</th>
               <th class="hidden">Actions</th>
             </tr>
           </thead>
@@ -143,7 +144,7 @@
 </div>
 
 <!-- modal for setting user view options -->
-<div class="modal fade" id="userViewOptions" tabindex="-1" aria-labelledby="userViewOptions" aria-hidden="true">
+<div class="modal fade" id="userViewOptionsModal" tabindex="-1" aria-labelledby="userViewOptions" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

@@ -26,7 +26,7 @@ function passwordValidateSuccess() {
 // name: dataset name
 // sharing: viewing permissions for company
 function addDataSetEntry(id, name, sharing) {
-  dom('#datasetstable>tbody').innerHTML += `
+  dom('#datasetstable').innerHTML += `
   <tr>
   <td>${name}</td>
   <td>
@@ -44,24 +44,35 @@ function addDataSetEntry(id, name, sharing) {
   </tr>`
 }
 
+function addUserViewOption(id, name, viewoption) {
+  dom('#userViewOptions>tbody').innerHTML += `
+  <tr>
+  <td>${name}</td>
+  <td>
+  <div class="dropdown">
+  <button class="btn btn-outline-primary dropdown-toggle" type="button" id="a${id}" data-bs-toggle="dropdown" aria-expanded="false">
+  ${viewoption}
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="a${id}">
+  <li><a class="dropdown-item" data-mutate="a${id}">View None</a></li>
+  <li><a class="dropdown-item" data-mutate="a${id}">View All</a></li>
+  <li><a class="dropdown-item" data-mutate="a${id}">Edit All</a></li>
+  <li><a class="dropdown-item user-view-option-modal" data-mutate="a${id}" data-bs-toggle="modal" data-bs-target="#userViewOptionsModal">Advanced</a></li>
+  </ul>
+  </div>
+  </td>
+  </tr>`
+}
+
 // dynamically adding user to Manageable Users table
 // id: DOM Element ID (must be unique)
 // name: username
 // accountType: type of user account
-function addManageableUserEntry(id, name, accountType, sharing) {
+function addManageableUserEntry(id, name, accountType) {
   dom('#manageableuserstable').innerHTML += `
   <tr id="a${id}">
   <td>${name}</td>
   <td id="b${id}" class="account-type">${accountType}</td>
-  <td class="hidden">
-  <button class="btn btn-outline-primary dropdown-toggle" type="button" id="c${id}" data-bs-toggle="dropdown" aria-expanded="false">
-  ${sharing}
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="c${id}">
-  <li><a class="dropdown-item" data-mutate="c${id}">All</a></li>
-  <li><a class="dropdown-item" data-mutate="c${id}">None</a></li>
-  <li><a class="dropdown-item user-view-option-modal" data-bs-toggle="modal" data-bs-target="#userViewOptions" data-mutate="c${id}">Advanced</a></li>
-  </td>
   <td class="hidden">
   <button type="button" data-mutate="b${id}" class="btn btn-outline-primary account-upgrade">Upgrade to Admin</button>
   <button type="button" data-mutate="a${id}" data-bs-toggle="modal" data-bs-target="#deleteAccountModal" class="btn btn-danger account-delete">Delete Account</button>
@@ -70,10 +81,10 @@ function addManageableUserEntry(id, name, accountType, sharing) {
 }
 
 // TODO: replace with database data
-addDataSetEntry(10, "Daves", "Private")
-addManageableUserEntry(0, "Constantino", "Company User", "All")
-addManageableUserEntry(1, "Constantino's", "Company User", "None")
-addManageableUserEntry(2, "Constantino'ss", "Company User", "All")
+addUserViewOption(10, "Daves", "Private")
+addManageableUserEntry(0, "Constantino", "Company User")
+addManageableUserEntry(1, "Constantino's", "Company User")
+addManageableUserEntry(2, "Constantino'ss", "Company User")
 
 
 /* ------------------- Helpers ------------------- */
@@ -135,13 +146,13 @@ doms('.user-view-option-modal').forEach(e => e.addEventListener('click', functio
   <thead>
   <tr>
   <th scope="col">Dataset</th>
-  <th scope="col">Sharing</th>
+  <th scope="col">View Option</th>
   </tr>
   </thead>
   <tbody>
   </tbody>`
 
-  promptModal(dom('#userViewOptions'),
+  promptModal(dom('#userViewOptionsModal'),
   makel('h5', 'User View Options'),
   datasets,
   null,
