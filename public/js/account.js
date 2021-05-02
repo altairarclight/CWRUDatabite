@@ -1,23 +1,25 @@
 // scripts for account.html
 
 // check whether the password can be sent to the server
-function passwordValidateSuccess() {
-  let oldPass = dom('#oldPassword')
-  let newPass = dom('#newPassword')
-  let newPass2 = dom('#newPassword2')
+function validatePassword() {
+  let oldPass = new Password(dom('#oldPassword').value)
+  let newPass = new Password(dom('#newPassword').value)
+  let newPassConfirm = new Password(dom('#newPassword2').value)
   let errorPrompt = dom('#passwordError')
-  if (newPass.value != newPass2.value) {
+
+  if (!newPass.match(newPassConfirm)) {
     errorPrompt.innerText = "Passwords do not match"
     return false
   }
-  if (newPass.value.length < 8 || newPass2.value.length < 8) {
+  if (newPass.lessEq(7) || newPassConfirm.lessEq(7)) {
     errorPrompt.innerText = "New password must be at least 8 characters"
     return false
   }
-  if (oldPass.value != "test") {
+  if (!oldPass.matchStr("test")) {
     errorPrompt.innerText = "Incorrect password"
     return false
   }
+  errorPrompt.innerText = ""
   return true
 }
 
@@ -132,8 +134,10 @@ doms('.account-upgrade').forEach(e => e.addEventListener('click', function() {
   getObserver(this).innerText = "Admin"
 }))
 
-dom('#changePassword').addEventListener('click', function() {
-  if (passwordValidateSuccess()) {} // send to server
+dom('#changePassword').addEventListener('click', function(event) {
+  event.preventDefault() // prevent form from sending to server before validation
+  let success = validatePassword()
+  if (success) {} // send to server
 })
 
 dom('#editmanageableuserstable').addEventListener('click', function() {
@@ -181,7 +185,7 @@ dom('#danger-my-account-delete').addEventListener('click', function() {
   'Cancel',
   'Yes, I want to delete my account',
   () => {
-    window.location.href = 'home.html'
+    window.location.href = './home.html'
   /* TODO: remove user from server */})
 })
 
