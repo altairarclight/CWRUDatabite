@@ -173,3 +173,25 @@ doms('#sidetab .nav-link').forEach(e => e.addEventListener('click', function() {
   })
   tab.classList.remove('hidden')
 }))
+
+dom('#danger-my-account-delete').addEventListener('click', function() {
+  promptModal(dom('#deleteAccountModal'),
+  makel('h5', 'Are you sure you want to delete your account?'),
+  makel('p', 'This action is permanent.'),
+  'Cancel',
+  'Yes, I want to delete my account',
+  () => {
+    window.location.href = 'home.html'
+  /* TODO: remove user from server */})
+})
+
+dom('#danger-my-company-delete').addEventListener('click', function() {
+  promptModal(dom('#deleteAccountModal'),
+  makel('h5', 'Are you sure you want to delete your company?'),
+  makel('p', 'This will delete all user accounts under the company. This action is permanent.'),
+  'Cancel',
+  'Yes, I want to delete my company',
+  () => {
+    window.location.href = './home.html'
+  /* TODO: remove user from server */})
+})
