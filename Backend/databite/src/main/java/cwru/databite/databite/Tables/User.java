@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class User {
 
     @Column(name = "username")

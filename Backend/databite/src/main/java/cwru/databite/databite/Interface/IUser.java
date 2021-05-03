@@ -1,9 +1,13 @@
 package cwru.databite.databite.Interface;
 
+import cwru.databite.databite.Tables.User;
+
 public interface IUser {
-    public boolean userRegistration();
+    public boolean userRegistration(User user);
 
-    public boolean userDelete();
+    public boolean userDelete(User user);
 
-    public boolean userModify(String uname, String pswrd, String compId);
+    public boolean userModify(User user);
+
+    public User userGet(String username);
 }

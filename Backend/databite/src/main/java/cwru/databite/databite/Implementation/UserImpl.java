@@ -1,77 +1,70 @@
 package cwru.databite.databite.Implementation;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cwru.databite.databite.Interface.IUser;
+import cwru.databite.databite.Tables.User;
 import cwru.databite.databite.Tables.UserRepository;
 
 @Controller
 @RequestMapping(path = "user")
 public class UserImpl implements IUser {
 
-    String username;
-    String password;
-    int companyId;
-
     private UserRepository userRepo;
 
-    public UserImpl(String uname, String pswrd, int compId) {
-        username = uname;
-        password = pswrd;
-        companyId = compId;
+    public UserImpl(UserRepository userRepository) {
+        userRepo = userRepository;
     }
 
     @PostMapping(path = "/registration")
     @Override
-    public boolean userRegistration() {
-        // Save username, password, companyId to user table in DB by calling Table class
-        TableImpl userTable = new TableImpl();
+    public boolean userRegistration(User user) {
 
         // Might not need this here if its done outside of this method
-        MessageDigest hasher;
-        String passwordHash = "";
-        try {
-            hasher = MessageDigest.getInstance("MD5");
-            hasher.update(password.getBytes());
-            byte[] digest = hasher.digest();
-            passwordHash = digest.toString();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+        // MessageDigest hasher;
+        // String passwordHash = "";
+        // try {
+        // hasher = MessageDigest.getInstance("MD5");
+        // hasher.update(password.getBytes());
+        // byte[] digest = hasher.digest();
+        // passwordHash = digest.toString();
+        // } catch (NoSuchAlgorithmException e) {
+        // e.printStackTrace();
+        // }
+        if (userRepo.save(user) != null) {
+            // return true; If operation successful
+            return true;
         }
-
-        // return true; If operation successful
-        return userTable.insert(new UserImpl(username, passwordHash, companyId));
+        // else return false
+        return false;
     }
 
+    @PostMapping(path = "/delete")
     @Override
-    public boolean userDelete() {
-        // Delete user with username and company Id
-        TableImpl userTable = new TableImpl();
+    public boolean userDelete(User user) {
+        userRepo.delete(user);
 
         // return true; If successful
-        return userTable.delete(new UserImpl(username, password, companyId));
+        return true;
     }
 
+    @PostMapping(path = "/modify")
     @Override
-    public boolean userModify(String uname, String pswrd, String compId) {
-        // Modify an existing user
-        TableImpl userTable = new TableImpl();
-
-        // return true; if successful
-        return userTable.modify(uname, pswrd, compId);
+    public boolean userModify(User user) {
+        if (userRepo.save(user) != null) {
+            // return true; If operation successful
+            return true;
+        }
+        // else return false
+        return false;
     }
 
-    public String getUsername() {
-        return username;
+    @GetMapping(path = "/get")
+    @Override
+    public User userGet(String username) {
+        return userRepo.findByUsername(username).stream().findFirst().get();
     }
-
-    public int getCompanyId() {
-        return companyId;
-    }
-
 }
