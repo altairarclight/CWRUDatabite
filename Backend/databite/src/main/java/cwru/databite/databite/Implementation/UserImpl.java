@@ -3,24 +3,34 @@ package cwru.databite.databite.Implementation;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import cwru.databite.databite.Interface.IUser;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-public class User implements IUser {
+import cwru.databite.databite.Interface.IUser;
+import cwru.databite.databite.Tables.UserRepository;
+
+@Controller
+@RequestMapping(path = "user")
+public class UserImpl implements IUser {
 
     String username;
     String password;
     int companyId;
 
-    public User(String uname, String pswrd, int compId) {
+    private UserRepository userRepo;
+
+    public UserImpl(String uname, String pswrd, int compId) {
         username = uname;
         password = pswrd;
         companyId = compId;
     }
 
+    @PostMapping(path = "/registration")
     @Override
     public boolean userRegistration() {
         // Save username, password, companyId to user table in DB by calling Table class
-        Table userTable = new Table();
+        TableImpl userTable = new TableImpl();
 
         // Might not need this here if its done outside of this method
         MessageDigest hasher;
@@ -35,22 +45,22 @@ public class User implements IUser {
         }
 
         // return true; If operation successful
-        return userTable.insert(new User(username, passwordHash, companyId));
+        return userTable.insert(new UserImpl(username, passwordHash, companyId));
     }
 
     @Override
     public boolean userDelete() {
         // Delete user with username and company Id
-        Table userTable = new Table();
+        TableImpl userTable = new TableImpl();
 
         // return true; If successful
-        return userTable.delete(new User(username, password, companyId));
+        return userTable.delete(new UserImpl(username, password, companyId));
     }
 
     @Override
     public boolean userModify(String uname, String pswrd, String compId) {
         // Modify an existing user
-        Table userTable = new Table();
+        TableImpl userTable = new TableImpl();
 
         // return true; if successful
         return userTable.modify(uname, pswrd, compId);

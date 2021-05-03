@@ -2,13 +2,13 @@ package cwru.databite.databite.Implementation;
 
 import cwru.databite.databite.Interface.ICompany;
 
-public class Company implements ICompany {
+public class CompanyImpl implements ICompany {
 
 	private int companyID;
 	private String companyName;
 	private String domainName;
 
-	private Company(String companyName) {
+	private CompanyImpl(String companyName) {
 		this.companyName = companyName;
 	}
 

@@ -2,7 +2,7 @@ package cwru.databite.databite.Implementation;
 
 import cwru.databite.databite.Interface.ITable;
 
-public class Table implements ITable {
+public class TableImpl implements ITable {
 
 	@Override
 	public boolean insert(Object insertObject) {
