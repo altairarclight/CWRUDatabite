@@ -3,14 +3,8 @@ package cwru.databite.databite.Implementation;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import cwru.databite.databite.Interface.IUser;
 
-@Controller
-@RequestMapping("user")
 public class User implements IUser {
 
     String username;
@@ -23,7 +17,6 @@ public class User implements IUser {
         companyId = compId;
     }
 
-    @PostMapping(value = "/registration")
     @Override
     public boolean userRegistration() {
         // Save username, password, companyId to user table in DB by calling Table class

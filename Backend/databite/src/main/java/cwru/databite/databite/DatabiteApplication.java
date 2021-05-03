@@ -9,5 +9,4 @@ public class DatabiteApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DatabiteApplication.class, args);
 	}
-
 }
