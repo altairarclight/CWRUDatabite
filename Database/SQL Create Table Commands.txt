@@ -1,5 +1,5 @@
 -- Table to reference users
-CREATE TABLE id16637142_databitedb.User (
+CREATE TABLE databite.user (
     username VARCHAR(50),
     password VARCHAR(50),
     companyID NUMERIC(6, 0),
@@ -7,12 +7,12 @@ CREATE TABLE id16637142_databitedb.User (
 );
 
 -- User test data
-INSERT INTO User
+INSERT INTO databite.user
 VALUES('email@domain.com', 'password', 123456);
 
 
 -- Table to reference datasets
-CREATE TABLE id16637142_databitedb.DataSets(
+CREATE TABLE databite.datasets(
     username VARCHAR(50),
     companyID NUMERIC(6, 0),
     datasetID INT(6) AUTO_INCREMENT,
@@ -20,21 +20,22 @@ CREATE TABLE id16637142_databitedb.DataSets(
 );
 
 -- DataSets test data
-INSERT INTO DataSets (username, companyID)
+INSERT INTO databite.datasets (username, companyID)
 VALUES('email@domain.com', 123456);
 
 
 -- Create link between users/companies and data sets
-CREATE TABLE id16637142_databitedb.UserDataSets (
+CREATE TABLE databite.userdatasets (
     userDataSetID INT(6) AUTO_INCREMENT,
     username VARCHAR(50),
     datasetID INT(6),
+    can_edit bool,
     PRIMARY KEY(userDataSetID),
-    FOREIGN KEY(username) REFERENCES User(username),
-    FOREIGN KEY(datasetID) REFERENCES DataSets(datasetID)
+    FOREIGN KEY(username) REFERENCES user(username),
+    FOREIGN KEY(datasetID) REFERENCES datasets(datasetID)
 );
 
 
 -- UserDataSets test data
-INSERT INTO UserDataSets (username, datasetID)
+INSERT INTO databite.userdatasets (username, datasetID)
 VALUES('email@domain.com', 1);
