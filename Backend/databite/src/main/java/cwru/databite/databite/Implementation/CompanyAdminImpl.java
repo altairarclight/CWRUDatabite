@@ -16,7 +16,7 @@ public class CompanyAdminImpl extends UserImpl {
 
     public CompanyAdminImpl(UserRepository userRepository) {
         super(userRepository);
-        userRepo = userRepository;
+        this.userRepo = userRepository;
     }
 
     @DeleteMapping(path = "/deleteuser")

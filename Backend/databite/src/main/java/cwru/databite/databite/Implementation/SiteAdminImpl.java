@@ -15,7 +15,7 @@ public class SiteAdminImpl extends UserImpl {
 
     public SiteAdminImpl(UserRepository userRepository) {
         super(userRepository);
-        userRepo = userRepository;
+        this.userRepo = userRepository;
     }
 
     @PostMapping(path = "/createuser")

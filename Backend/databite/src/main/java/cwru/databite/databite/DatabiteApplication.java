@@ -6,11 +6,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 @EnableAutoConfiguration
 @SpringBootApplication
+@ComponentScan({ "com.delivery.request" })
 public class DatabiteApplication implements CommandLineRunner {
 
 	// @Autowired
@@ -30,9 +32,9 @@ public class DatabiteApplication implements CommandLineRunner {
 		// }
 	}
 
-	@Bean(name = "entityManagerFactory")
-	public LocalSessionFactoryBean sessionFactory() {
-		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-		return sessionFactory;
-	}
+	// @Bean(name = "entityManagerFactory")
+	// public LocalSessionFactoryBean sessionFactory() {
+	// LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+	// return sessionFactory;
+	// }
 }

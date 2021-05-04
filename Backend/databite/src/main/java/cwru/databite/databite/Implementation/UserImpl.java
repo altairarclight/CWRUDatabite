@@ -16,7 +16,7 @@ public class UserImpl implements IUser {
     private UserRepository userRepo;
 
     public UserImpl(UserRepository userRepository) {
-        userRepo = userRepository;
+        this.userRepo = userRepository;
     }
 
     @PostMapping(path = "/registration")
