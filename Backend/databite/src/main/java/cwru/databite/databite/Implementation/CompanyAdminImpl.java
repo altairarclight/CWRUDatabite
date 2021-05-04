@@ -1,23 +1,37 @@
 package cwru.databite.databite.Implementation;
 
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import cwru.databite.databite.Tables.User;
+import cwru.databite.databite.Tables.UserRepository;
+
+@ControllerAdvice
+@RequestMapping(path = "companyadmin")
 public class CompanyAdminImpl extends UserImpl {
-    String username;
-    String password;
-    String companyId;
 
-    public CompanyAdminImpl(String uname, String pswrd, int compId) {
-        super(uname, pswrd, compId);
+    private UserRepository userRepo;
+
+    public CompanyAdminImpl(UserRepository userRepository) {
+        super(userRepository);
+        userRepo = userRepository;
     }
 
-    public boolean deleteCompanyUser(UserImpl user) {
-        TableImpl table = new TableImpl();
-
-        return table.delete(user);
+    @DeleteMapping(path = "/deleteuser")
+    public boolean deleteCompanyUser(User user) {
+        User currentUser = new User();
+        if (user.getCompanyID() == currentUser.getCompanyID()) {
+            userRepo.delete(user);
+            return true;
+        }
+        return false;
     }
 
-    public boolean addUserToCompanyDatabase(UserImpl user) {
-        TableImpl compDBTable = new TableImpl();
-
-        return compDBTable.insert(user);
+    @PostMapping(path = "/addtodatabase")
+    public boolean addUserToCompanyDatabase(User user, int companyID) {
+        // TODO: Figure out how to do this
+        return true;
     }
 }

@@ -1,30 +1,43 @@
 package cwru.databite.databite.Implementation;
 
+import cwru.databite.databite.Tables.User;
+import cwru.databite.databite.Tables.UserRepository;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@ControllerAdvice
+@RequestMapping(path = "siteadmin")
 public class SiteAdminImpl extends UserImpl {
-    String username;
-    String password;
-    int companyId;
 
-    public SiteAdminImpl(String uname, String pswrd, int compId) {
-        super(uname, pswrd, compId);
+    private UserRepository userRepo;
+
+    public SiteAdminImpl(UserRepository userRepository) {
+        super(userRepository);
+        userRepo = userRepository;
     }
 
-    public boolean createUser(UserImpl user) {
-        return user.userRegistration();
-    }
-
-    public boolean deleteUser(UserImpl user, int companyID) {
-        TableImpl userTable = new TableImpl();
-
-        if (user.getCompanyId() == companyID) {
-            return userTable.delete(user);
+    @PostMapping(path = "/createuser")
+    public boolean createUser(User user) {
+        if (userRepo.save(user) != null) {
+            // return true; If operation successful
+            return true;
         }
+        // else return false
         return false;
     }
 
-    public boolean addUserToCompanyDatabase(UserImpl user, int companyID) {
-        TableImpl compDBTable = new TableImpl();
+    @DeleteMapping(path = "/deleteuser")
+    public boolean deleteUser(User user, int companyID) {
+        userRepo.delete(user);
 
-        return compDBTable.insert(user);
+        return true;
+    }
+
+    @PostMapping(path = "/addtodatabase")
+    public boolean addUserToCompanyDatabase(User user, int companyID) {
+        // TODO: Figure out how to do this
+        return true;
     }
 }

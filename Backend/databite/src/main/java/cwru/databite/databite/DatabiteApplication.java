@@ -13,8 +13,8 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 @SpringBootApplication
 public class DatabiteApplication implements CommandLineRunner {
 
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	// @Autowired
+	// private JdbcTemplate jdbcTemplate;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DatabiteApplication.class, args);
@@ -23,10 +23,11 @@ public class DatabiteApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		String sql = "INSERT INTO user (username, password, companyID) VALUES (?, ?, ?)";
-		int result = jdbcTemplate.update(sql, "sample@domain.com", "password", "654321");
-		if (result > 0) {
-			System.out.println("New row");
-		}
+		// int result = jdbcTemplate.update(sql, "sample@domain.com", "password",
+		// "654321");
+		// if (result > 0) {
+		// System.out.println("New row");
+		// }
 	}
 
 	@Bean(name = "entityManagerFactory")
