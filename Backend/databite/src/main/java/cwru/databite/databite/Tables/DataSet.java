@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "datasets")
@@ -25,7 +27,8 @@ public class DataSet {
     @Column(name = "datasetID")
     private int datasetID;
 
-    @ManyToMany(mappedBy = "userdatasets")
+    @ManyToMany
+    @JoinTable(name = "userdatasets", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "datasetID"))
     private Set<User> users;
 
     public String getUsername() {

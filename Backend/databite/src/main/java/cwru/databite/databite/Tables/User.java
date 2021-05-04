@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -13,6 +14,7 @@ import javax.persistence.JoinColumn;
 @Table(name = "user")
 public class User {
 
+    @Id
     @Column(name = "username")
     private String username;
 
@@ -22,10 +24,9 @@ public class User {
     @Column(name = "companyID")
     private int companyID;
 
-    // @ManyToMany
-    // @JoinTable(name = "userdatasets", joinColumns = @JoinColumn(name =
-    // "username"), inverseJoinColumns = @JoinColumn(name = "datasetID"))
-    // private Set<DataSet> userDatasets;
+    @ManyToMany
+    @JoinTable(name = "userdatasets", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "datasetID"))
+    private Set<DataSet> userDatasets;
 
     public String getUsername() {
         return this.username;
@@ -51,12 +52,12 @@ public class User {
         this.companyID = companyID;
     }
 
-    // public Set<DataSet> getUserDatasets() {
-    // return this.userDatasets;
-    // }
+    public Set<DataSet> getUserDatasets() {
+        return this.userDatasets;
+    }
 
-    // public void setUserDatasets(Set<DataSet> userDatasets) {
-    // this.userDatasets = userDatasets;
-    // }
+    public void setUserDatasets(Set<DataSet> userDatasets) {
+        this.userDatasets = userDatasets;
+    }
 
 }
