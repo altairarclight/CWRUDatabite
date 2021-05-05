@@ -39,3 +39,13 @@ CREATE TABLE databite.userdatasets (
 -- UserDataSets test data
 INSERT INTO databite.userdatasets (username, datasetID)
 VALUES('email@domain.com', 1);
+
+
+CREATE TABLE databite.company (
+	companyID INT(6),
+	company_name VARCHAR(50),
+    PRIMARY KEY(companyID)
+);
+
+INSERT INTO databite.company 
+VALUES(123456, 'Test Company');

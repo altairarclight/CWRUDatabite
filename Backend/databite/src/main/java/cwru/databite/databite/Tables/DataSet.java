@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
@@ -27,9 +28,8 @@ public class DataSet {
     @Column(name = "datasetID")
     private int datasetID;
 
-    @ManyToMany
-    @JoinTable(name = "userdatasets", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "datasetID"))
-    private Set<User> users;
+    @OneToMany(mappedBy = "dataSet")
+    private Set<UserDataSets> userDataSets;
 
     public String getUsername() {
         return this.username;
@@ -55,12 +55,12 @@ public class DataSet {
         this.datasetID = datasetID;
     }
 
-    public Set<User> getUsers() {
-        return this.users;
+    public Set<UserDataSets> getUsers() {
+        return this.userDataSets;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void setUsers(Set<UserDataSets> userDataSet) {
+        this.userDataSets = userDataSet;
     }
 
 }

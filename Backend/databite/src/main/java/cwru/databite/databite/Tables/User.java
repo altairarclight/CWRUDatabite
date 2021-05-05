@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
@@ -21,12 +23,20 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "companyID")
-    private int companyID;
+    @OneToMany(mappedBy = "user")
+    private Set<UserDataSets> userDatasets;
 
-    @ManyToMany
-    @JoinTable(name = "userdatasets", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "datasetID"))
-    private Set<DataSet> userDatasets;
+    @ManyToOne
+    @JoinColumn(name = "companyID", nullable = false)
+    private Company company;
+
+    public Company getCompany() {
+        return this.company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 
     public String getUsername() {
         return this.username;
@@ -44,19 +54,11 @@ public class User {
         this.password = password;
     }
 
-    public int getCompanyID() {
-        return this.companyID;
-    }
-
-    public void setCompanyID(int companyID) {
-        this.companyID = companyID;
-    }
-
-    public Set<DataSet> getUserDatasets() {
+    public Set<UserDataSets> getUserDatasets() {
         return this.userDatasets;
     }
 
-    public void setUserDatasets(Set<DataSet> userDatasets) {
+    public void setUserDatasets(Set<UserDataSets> userDatasets) {
         this.userDatasets = userDatasets;
     }
 

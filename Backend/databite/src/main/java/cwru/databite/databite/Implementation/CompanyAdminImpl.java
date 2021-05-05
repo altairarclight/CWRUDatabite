@@ -22,7 +22,7 @@ public class CompanyAdminImpl extends UserImpl {
     @DeleteMapping(path = "/deleteuser")
     public boolean deleteCompanyUser(User user) {
         User currentUser = new User();
-        if (user.getCompanyID() == currentUser.getCompanyID()) {
+        if (user.getCompany().getCompanyID() == currentUser.getCompany().getCompanyID()) {
             userRepo.delete(user);
             return true;
         }

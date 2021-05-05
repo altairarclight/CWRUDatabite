@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface CompanyRepository extends CrudRepository<Company, Integer> {
 
-    @Query("SELECT DISTINCT user FROM Company company WHERE company.companyName LIKE :companyName%")
+    @Query("SELECT DISTINCT company FROM Company company WHERE company.companyName LIKE :companyName%")
     @Transactional(readOnly = true)
     Collection<Company> findByCompanyName(@Param("companyName") String companyName);
 }

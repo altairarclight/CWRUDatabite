@@ -29,11 +29,11 @@ public class CompanyImpl implements ICompany {
 	@Override
 	public boolean companyRegistration(Company company) {
 		if (companyRepo.save(company) != null) {
-            //return true; If operation successful
-            return true;
-        }
-        // else return false
-        return false;
+			// return true; If operation successful
+			return true;
+		}
+		// else return false
+		return false;
 	}
 
 	@DeleteMapping(path = "/delete")
@@ -41,24 +41,24 @@ public class CompanyImpl implements ICompany {
 	public boolean companyDelete(Company company) {
 		companyRepo.delete(company);
 
-        // return true; If successful
-        return true;
+		// return true; If successful
+		return true;
 	}
 
 	@PostMapping(path = "/modify")
 	@Override
 	public boolean companyModify(Company company) {
 		if (companyRepo.save(company) != null) {
-            // return true; If operation successful
-            return true;
-        }
-        // else return false
-        return false;
-	} 
+			// return true; If operation successful
+			return true;
+		}
+		// else return false
+		return false;
+	}
 
 	@GetMapping(path = "/get")
-    @Override
-    public Company getCompany(String companyName) {
-        return companyRepo.findByCompanyName(companyName).stream().findFirst().get();
-    } 
+	@Override
+	public Company getCompany(String companyName) {
+		return companyRepo.findByCompanyName(companyName).stream().findFirst().get();
+	}
 }
