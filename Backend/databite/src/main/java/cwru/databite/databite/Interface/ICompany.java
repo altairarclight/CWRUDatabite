@@ -1,12 +1,14 @@
 package cwru.databite.databite.Interface;
 
+import cwru.databite.databite.Tables.Company;
+
 public interface ICompany {
 
-	public void companyRegistration(String companyName);
+	public boolean companyRegistration(Company company);
 
-	public void companyDelete(String companyName, int companyID);
+	public boolean companyDelete(Company company);
 
-	public void companyModify(String companyName, int companyID);
+	public boolean companyModify(Company company);
 
-	public void getCompany(int companyID);
+	public Company getCompany(String companyName);
 }
