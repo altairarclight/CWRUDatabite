@@ -101,9 +101,14 @@ function addManageableUserEntry(id, name, accountType) {
 
 // TODO: replace with database data
 addUserViewOption(10, "Daves", "Private")
+addUserViewOption(11, "Wells", "View All")
+addUserViewOption(12, "Melt", "Edit All")
+addUserViewOption(13, "Dens", "Edit All")
 addManageableUserEntry(0, "Constantino", "Company User")
-addManageableUserEntry(1, "Constantino's", "Company User")
-addManageableUserEntry(2, "Constantino'ss", "Company User")
+addManageableUserEntry(1, "Euclid", "Company User")
+addManageableUserEntry(2, "Ollin", "Company User")
+addManageableUserEntry(3, "Rockefeller", "Company User")
+addManageableUserEntry(4, "Bruce", "Company User")
 
 
 /* ------------------- Helpers ------------------- */
