@@ -73,6 +73,13 @@ function showFile(){
   }
 }
 
+dom('#confirm-upload').addEventListener('click', function(event){
+  let xhr = new XMLHttpRequest()
+  // Change accordingly
+  xhr.open("POST", "/upload")
+  xhr.send(file)
+})
+
 function dataClean(){
     dropArea.innerHTML = `
     <div class="form-check">
@@ -113,4 +120,6 @@ function confirmSelection(){
 function done(){
     dropArea.innerHTML = `DONE`
 }
+
+
 

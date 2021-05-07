@@ -49,6 +49,17 @@ public class UserImpl implements IUser {
         return false;
     }
 
+    @GetMapping(path = "/login")
+    @Override
+    public boolean userLogin(String email, String password) {
+        User user = userRepo.findByUsername(email).stream().findFirst().get();
+
+        if (user != null && user.getPassword().equals(password)) {
+            return true;
+        }
+        return false;
+    }
+
     @DeleteMapping(path = "/delete")
     @Override
     public boolean userDelete(String username) {
