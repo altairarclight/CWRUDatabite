@@ -51,7 +51,7 @@
 
 
         <div class="submitButton">
-            <button type="submit" class="btn" id="generateCharts" onClick="generate();return false;">Generate Charts</button>
+            <button type="submit" class="btn btn-primary" id="generateCharts" onClick="generate();return false;">Generate Charts</button>
         </div>
     </form>
 
@@ -63,28 +63,42 @@
         <div class="innerPositions">
             <canvas id="pa"></canvas>
         </div>
+        <div id="paImage"></div>
+
 
         <div class="innerPositions">
             <canvas id="h"></canvas>
         </div>
+        <div id="hImage"></div>
+
 
         <div class="innerPositions">
             <canvas id="lg"></canvas>
         </div>
+        <div id="lgImage"></div>
+
 
         <div class="innerPositions">
             <canvas id="sp"></canvas>
         </div>
+        <div id="spImage"></div>
         
     </div>
 
     <script>
+        // Data
+        //var data = 
 
         // Global chart values
         var polarArea;
         var histogram;
         var lineGraph;
         var scatterPlot;
+
+        var paIMG;
+        var hIMG;
+        var lgIMG;
+        var spIMG;
 
         // Global field variables
         var polarAreaTitle;
@@ -96,6 +110,8 @@
         var histogramTitleInput = "";
         var lineGraphTitleInput = "";
         var scatterPlotTitleInput = "";
+
+        var lineGraphColor;
 
 
         // ---------------------------------------------------------------------------------
@@ -146,9 +162,24 @@
                     },
                     legend: {
                         display: false
-                    }
+                    },
+                    tooltips: {
+                        enabled: false
+                    },
+                    animation: {
+                        onComplete: function() { console.log(polarArea.toBase64Image()); }
+                    },
+                    animation: false
                 }
             });
+
+            // Download
+            console.log(polarArea.toBase64Image());
+            var a = document.createElement('a');
+            a.href = polarArea.toBase64Image();
+            a.download = 'Polar_Area_Chart.png';
+
+            a.click();
         }
 
 
@@ -173,9 +204,21 @@
                     },
                     legend: {
                         display: false
-                    }
+                    },
+                    tooltips: {
+                        enabled: false
+                    },
+                    animation: false
                 }
             });
+
+            // Download
+            console.log(histogram.toBase64Image());
+            var a = document.createElement('a');
+            a.href = histogram.toBase64Image();
+            a.download = 'Histogram.png';
+
+            a.click();
         }
 
 
@@ -199,16 +242,28 @@
                     },
                     legend: {
                         display: false
-                    }
+                    },
+                    tooltips: {
+                        enabled: false
+                    },
+                    animation: false
                 }
             });
+
+            // Download
+            console.log(lineGraph.toBase64Image());
+            var a = document.createElement('a');
+            a.href = lineGraph.toBase64Image();
+            a.download = 'Line_Graph.png';
+
+            a.click();
         }
 
 
         function generateScatterPlot() {
             let chart = document.getElementById('sp').getContext('2d');
 
-            histogram = new Chart(chart, {
+            scatterPlot = new Chart(chart, {
                 type: 'scatter',
                 data: {
                     datasets: [{
@@ -224,9 +279,21 @@
                     },
                     legend: {
                         display: false
-                    }
+                    },
+                    tooltips: {
+                        enabled: false
+                    },
+                    animation: false
                 }
             });
+
+            // Download
+            console.log(scatterPlot.toBase64Image());
+            var a = document.createElement('a');
+            a.href = scatterPlot.toBase64Image();
+            a.download = 'Scatter_Plot.png';
+
+            a.click();
         }
 
 
@@ -244,6 +311,8 @@
                 polarAreaTitle.remove(); 
                 polarAreaTitle = null;
             }
+
+            // Color scheme
         }
 
 
@@ -258,6 +327,8 @@
                 histogramTitle.remove(); 
                 histogramTitle = null;
             }
+
+            // Color scheme
         }
 
 
@@ -271,6 +342,11 @@
             else { 
                 lineGraphTitle.remove(); 
                 lineGraphTitle = null;
+            }
+
+            // Color scheme
+            if (!lineGraphColor) {
+                
             }
         }
 
@@ -286,6 +362,8 @@
                 scatterPlotTitle.remove(); 
                 scatterPlotTitle = null;
             }
+
+            // Color scheme
         }
 
     </script>
