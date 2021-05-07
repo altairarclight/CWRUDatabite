@@ -31,13 +31,13 @@
                     <div class="panel panel-default">
                     <div class="panel-body">
                     
-                    <form th:action="@{/fileupload}" th:object="${user}" method="POST" enctype="multipart/form-data">
+                    <form id="fileUpload" th:action="@{/fileupload}" th:object="${user}" method="POST" enctype="multipart/form-data">
                         <!-- File Drop Area -->
                         <div class="drag-area" id ="upload">
                             <header>Drag & Drop to Upload File</header>
                             <span>OR</span>
                             <button>Browse Files</button>
-                            <input type="file" hidden>
+                            <input type="file" hidden accept=".csv,.tsv,.txt,.dat,.sql,.xml">
                         </div>
                     </form>
                     <script src="./js/main.js"></script>
@@ -50,7 +50,7 @@
 
         <div class="drive-wrapper drive-list-view">
             <div class="table-responsive drive-items-table-wrapper">
-                <table class="table">
+                <table id="datasettable" class="table">
                     <thead>
                         <tr>
                             <th class="name truncate">Name</th>
@@ -70,7 +70,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="name truncate"><a href="#">Stock Image DC3214.JPG</a></td>
+                            <td class="name truncate"><a href="#">Meeting Notes.c</a></td>
                             <td class="size">235 MB</td>
                             <td class="actions">
                                 <button><i class="fa fa-download"></i></button>
