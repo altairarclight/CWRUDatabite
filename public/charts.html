@@ -13,6 +13,8 @@
 </head>
 
 <body>
+    <h1>Select your charts</h1>
+    <p>All fields are optional, but allow for more customization.</p>
 
     <!-- Display checkboxes -->
     <form>
@@ -45,10 +47,23 @@
 
     <!-- Position generated plots on the page -->
     <div class="chartPositions">
-        <canvas id="pa"></canvas>
-        <canvas id="h"></canvas>
-        <canvas id="lg"></canvas>
-        <canvas id="sp"></canvas>
+
+        <div class="innerPositions">
+            <canvas id="pa"></canvas>
+        </div>
+
+        <div class="innerPositions">
+            <canvas id="h"></canvas>
+        </div>
+
+        <div class="innerPositions">
+            <canvas id="lg"></canvas>
+        </div>
+
+        <div class="innerPositions">
+            <canvas id="sp"></canvas>
+        </div>
+        
     </div>
 
     <script>
@@ -59,7 +74,7 @@
         var lineGraph;
         var scatterPlot;
 
-        // Generate the selected charts
+        // Generate all selected charts
         function generate() {
             if (document.getElementById('polarArea').checked) { generatePolarArea(); }
             else { if (polarArea) { polarArea.destroy(); }}
@@ -74,7 +89,9 @@
             else { if (scatterPlot) { scatterPlot.destroy(); }}
         }
 
-        // Helper functions
+
+        // ---------------------------------------------------------------------------------
+        // Generate individual charts
         function generatePolarArea() {
             let chart = document.getElementById('pa').getContext('2d');
 
@@ -101,6 +118,7 @@
             });
         }
 
+
         function generateHistogram() {
             let chart = document.getElementById('h').getContext('2d');
 
@@ -115,6 +133,8 @@
                     }]
                 },
                 options: {
+                    //responsive: true,
+                    //maintainAspectRatio: false,
                     title: {
                         display: true,
                         text: 'title', // dummy
@@ -126,6 +146,7 @@
                 }
             });
         }
+
 
         function generateLineGraph() {
             let chart = document.getElementById('lg').getContext('2d');
@@ -152,6 +173,7 @@
             });
         }
 
+
         function generateScatterPlot() {
             let chart = document.getElementById('sp').getContext('2d');
 
@@ -174,6 +196,15 @@
                     }
                 }
             });
+        }
+
+
+        // ---------------------------------------------------------------------------------
+        // Global field variables
+        
+        // Generate required user input fields for each chart
+        function displayFields() {
+
         }
 
     </script>
