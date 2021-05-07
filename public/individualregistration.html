@@ -17,7 +17,7 @@
             <div class="panel panel-primary">
                 <div class="panel-body">
         
-                    <form th:action="@{/registration}" method="POST" th:object="${user}">
+                    <form id="individualRegister" th:action="@{/registration}" method="POST" th:object="${user}">
                         <div class="form-group">
                             <label class="control-label" for="signupEmail">Email Address</label> 
                             <input type="email" class="form-control" id="reg_Email" th:field="*{email}" required maxlength="50">
@@ -33,7 +33,7 @@
                             <br>
                             <button id="signupSubmit" type="submit" class="btn btn-primary">Sign Up</button>
                         </div>
-                    
+                        <script src="./js/individualregistration.js"></script>
                         <hr>
                         <p></p>Already have an account? <a href="./home.html">Sign in</a></p>
                     </form>
