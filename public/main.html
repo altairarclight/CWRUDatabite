@@ -31,14 +31,16 @@
                     <div class="panel panel-default">
                     <div class="panel-body">
                     
-                    <!-- File Drop Area -->
-                    <div class="drag-area" id ="upload">
-                        <header>Drag & Drop to Upload File</header>
-                        <span>OR</span>
-                        <button>Browse Files</button>
-                        <input type="file" hidden>
-                      </div>
-                      <script src="./js/main.js"></script>
+                    <form th:action="@{/fileupload}" th:object="${user}" method="POST" enctype="multipart/form-data">
+                        <!-- File Drop Area -->
+                        <div class="drag-area" id ="upload">
+                            <header>Drag & Drop to Upload File</header>
+                            <span>OR</span>
+                            <button>Browse Files</button>
+                            <input type="file" hidden>
+                        </div>
+                    </form>
+                    <script src="./js/main.js"></script>
 
                     <!-- Close Button -->
                     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>                   
