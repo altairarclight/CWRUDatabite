@@ -1,5 +1,22 @@
 // scripts for account.html
 
+window.onload = function() {
+  let xhr = new XMLHttpRequest()
+  xhr.open("GET", "/companyadmin/getcompanyusers", true)
+  xhr.onreadystatechange = function () {
+    if(xhr.readyState === XMLHttpRequest.DONE) {
+      var status = xhr.status;
+      if (status === 0 || (status >= 200 && status < 400)) {
+        // The request has been completed successfully
+        console.log(xhr.responseText);
+      } else {
+        // Oh no! There has been an error with the request!
+      }
+    }
+  };
+  xhr.send();
+}
+
 // check whether the password can be sent to the server
 function validatePassword() {
   let oldPass = new Password(dom('#oldPassword').value)
@@ -137,7 +154,12 @@ doms('.account-upgrade').forEach(e => e.addEventListener('click', function() {
 dom('#changePassword').addEventListener('click', function(event) {
   event.preventDefault() // prevent form from sending to server before validation
   let success = validatePassword()
-  if (success) {} // send to server
+  if (success) {
+    let form = new FormData(dom('#changePasswordForm'))
+    let xhr = new XMLHttpRequest()
+    xhr.open("put", "user/updatepassword")
+    xhr.send(form)
+  }
 })
 
 dom('#editmanageableuserstable').addEventListener('click', function() {
@@ -186,7 +208,10 @@ dom('#danger-my-account-delete').addEventListener('click', function() {
   'Yes, I want to delete my account',
   () => {
     window.location.href = './home.html'
-  /* TODO: remove user from server */})
+    let xhttp = new XMLHttpRequest()
+    xhttp.open("POST", "/user/delete", false)
+    xhttp.send()
+  })
 })
 
 dom('#danger-my-company-delete').addEventListener('click', function() {
@@ -197,5 +222,8 @@ dom('#danger-my-company-delete').addEventListener('click', function() {
   'Yes, I want to delete my company',
   () => {
     window.location.href = './home.html'
-  /* TODO: remove user from server */})
+    let xhttp = new XMLHttpRequest()
+    xhttp.open("POST", "/user/delete", false)
+    xhttp.send()
+  })
 })
