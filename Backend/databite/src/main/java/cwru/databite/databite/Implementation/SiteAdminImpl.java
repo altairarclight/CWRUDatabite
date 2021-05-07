@@ -1,6 +1,8 @@
 package cwru.databite.databite.Implementation;
 
+import cwru.databite.databite.Tables.DataSetRepository;
 import cwru.databite.databite.Tables.User;
+import cwru.databite.databite.Tables.UserDataSetsRepository;
 import cwru.databite.databite.Tables.UserRepository;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,8 +15,9 @@ public class SiteAdminImpl extends UserImpl {
 
     private UserRepository userRepo;
 
-    public SiteAdminImpl(UserRepository userRepository) {
-        super(userRepository);
+    public SiteAdminImpl(UserRepository userRepository, UserDataSetsRepository userDataSetRepository,
+            DataSetRepository datasetRepository) {
+        super(userRepository, userDataSetRepository, datasetRepository);
         this.userRepo = userRepository;
     }
 

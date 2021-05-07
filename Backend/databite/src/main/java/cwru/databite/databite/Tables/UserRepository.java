@@ -1,6 +1,7 @@
 package cwru.databite.databite.Tables;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -14,4 +15,8 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     @Query("SELECT DISTINCT user FROM User user WHERE user.username LIKE :username%")
     @Transactional(readOnly = true)
     Collection<User> findByUsername(@Param("username") String username);
+
+    @Query(value = "SELECT * FROM User user WHERE user.companyID = :companyID", nativeQuery = true)
+    @Transactional(readOnly = false)
+    Collection<User> findCompanyUsers(@Param("companyID") int companyID);
 }

@@ -49,3 +49,5 @@ CREATE TABLE databite.company (
 
 INSERT INTO databite.company 
 VALUES(123456, 'Test Company');
+
+ALTER TABLE databite.user ADD account_type INT NOT NULL DEFAULT(0);

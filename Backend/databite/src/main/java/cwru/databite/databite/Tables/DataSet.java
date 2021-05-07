@@ -24,7 +24,7 @@ public class DataSet {
     private int companyID;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "datasetID")
     private int datasetID;
 
