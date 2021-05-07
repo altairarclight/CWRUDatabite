@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @EnableAutoConfiguration
 @SpringBootApplication
-@ComponentScan({ "com.delivery.request" })
+@ComponentScan({ "com.delivery.request", "cwru.databite.databite.Implementation" })
 public class DatabiteApplication implements CommandLineRunner {
 
 	// @Autowired

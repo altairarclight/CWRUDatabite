@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import cwru.databite.databite.Interface.IUser;
 import cwru.databite.databite.Tables.DataSet;
@@ -17,7 +18,7 @@ import cwru.databite.databite.Tables.UserDataSets;
 import cwru.databite.databite.Tables.UserDataSetsRepository;
 import cwru.databite.databite.Tables.UserRepository;
 
-@Controller
+@RestController
 @RequestMapping(path = "user")
 public class UserImpl implements IUser {
 
@@ -30,6 +31,11 @@ public class UserImpl implements IUser {
         this.userRepo = userRepository;
         this.userDataSetRepo = userDataSetRepository;
         this.datasetRepo = datasetRepository;
+    }
+
+    @RequestMapping(path = "/error")
+    public String handleError() {
+        return "error";
     }
 
     @PostMapping(path = "/registration")

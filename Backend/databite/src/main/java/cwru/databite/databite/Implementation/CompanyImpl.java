@@ -14,15 +14,10 @@ import cwru.databite.databite.Tables.Company;
 @RequestMapping(path = "company")
 public class CompanyImpl implements ICompany {
 
-	int companyID;
-	String companyName;
-	String domainName;
-
 	private CompanyRepository companyRepo;
 
-	private CompanyImpl(String companyName, int companyID) {
-		this.companyName = companyName;
-		this.companyID = companyID;
+	private CompanyImpl(CompanyRepository companyRepository) {
+		this.companyRepo = companyRepository;
 	}
 
 	@PostMapping(path = "/registration")

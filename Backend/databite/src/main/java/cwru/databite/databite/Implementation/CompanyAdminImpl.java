@@ -33,6 +33,11 @@ public class CompanyAdminImpl extends UserImpl {
         this.userRepo = userRepository;
     }
 
+    @RequestMapping(path = "/error")
+    public String handleError() {
+        return "error";
+    }
+
     @PostMapping(path = "/adminregistration")
     public boolean companyAdminRegistration(String email, String password, String companyName, int companyID) {
 
