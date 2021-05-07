@@ -19,24 +19,36 @@
     <!-- Display checkboxes -->
     <form>
         <div class="polarAreaChart">
-            <input type="checkbox" id="polarArea" name="polarArea">
+            <input type="checkbox" id="polarArea" name="polarArea" onclick="createPolarAreaFields();">
             <label for="polarArea">Polar area chart</label>
         </div>
 
+        <div class="polarAreaTitle" id="paTitle"></div>
+
+
         <div class="histogramChart">
-            <input type="checkbox" id="histogram" name="histogram">
+            <input type="checkbox" id="histogram" name="histogram" onclick="createHistogramTitle();">
             <label for="histogram">Histogram</label>
         </div>
 
+        <div class="histogramTitle" id="hTitle"></div>
+
+
         <div class="lineGraphChart">
-            <input type="checkbox" id="lineGraph" name="lineGraph">
+            <input type="checkbox" id="lineGraph" name="lineGraph" onclick="createLineGraphFields();">
             <label for="lineGraph">Line graph</label>
         </div>
 
+        <div class="lineGraphTitle" id="lgTitle"></div>
+
+
         <div class="scatterPlotChart">
-            <input type="checkbox" id="scatterPlot" name="scatterPlot">
+            <input type="checkbox" id="scatterPlot" name="scatterPlot" onclick="createScatterPlotFields();">
             <label for="scatterPlot">Scatter plot</label>
         </div>
+
+        <div class="scatterPlot" id="spTitle"></div>
+
 
         <div class="submitButton">
             <button type="submit" class="btn" id="generateCharts" onClick="generate();return false;">Generate Charts</button>
@@ -74,23 +86,44 @@
         var lineGraph;
         var scatterPlot;
 
+        // Global field variables
+        var polarAreaTitle;
+        var histogramTitle;
+        var lineGraphTitle;
+        var scatterPlotTitle;
+        
+        var polarAreaTitleInput = "";
+        var histogramTitleInput = "";
+        var lineGraphTitleInput = "";
+        var scatterPlotTitleInput = "";
+
+
+        // ---------------------------------------------------------------------------------
+
         // Generate all selected charts
         function generate() {
-            if (document.getElementById('polarArea').checked) { generatePolarArea(); }
+            if (document.getElementById('polarArea').checked) { 
+                polarAreaTitleInput = document.getElementById('PAtitle').value;
+                generatePolarArea(); }
             else { if (polarArea) { polarArea.destroy(); }}
 
-            if (document.getElementById('histogram').checked) { generateHistogram(); }
+            if (document.getElementById('histogram').checked) { 
+                histogramTitleInput = document.getElementById('Htitle').value;
+                generateHistogram(); }
             else { if (histogram) { histogram.destroy(); }}
 
-            if(document.getElementById('lineGraph').checked) { generateLineGraph(); }
+            if(document.getElementById('lineGraph').checked) { 
+                lineGraphTitleInput = document.getElementById('LGtitle').value;
+                generateLineGraph(); }
             else { if (lineGraph) { lineGraph.destroy(); }}
 
-            if(document.getElementById('scatterPlot').checked) { generateScatterPlot(); }
+            if(document.getElementById('scatterPlot').checked) { 
+                scatterPlotTitleInput = document.getElementById('SPtitle').value;
+                generateScatterPlot(); }
             else { if (scatterPlot) { scatterPlot.destroy(); }}
         }
 
 
-        // ---------------------------------------------------------------------------------
         // Generate individual charts
         function generatePolarArea() {
             let chart = document.getElementById('pa').getContext('2d');
@@ -108,7 +141,7 @@
                 options: {
                     title: {
                         display: true,
-                        text: 'title', // dummy
+                        text: polarAreaTitleInput,
                         fontSize: 25
                     },
                     legend: {
@@ -133,11 +166,9 @@
                     }]
                 },
                 options: {
-                    //responsive: true,
-                    //maintainAspectRatio: false,
                     title: {
                         display: true,
-                        text: 'title', // dummy
+                        text: histogramTitleInput,
                         fontSize: 25
                     },
                     legend: {
@@ -163,7 +194,7 @@
                 options: {
                     title: {
                         display: true,
-                        text: 'title', // dummy
+                        text: lineGraphTitleInput,
                         fontSize: 25
                     },
                     legend: {
@@ -188,7 +219,7 @@
                 options: {
                     title: {
                         display: true,
-                        text: 'title', // dummy
+                        text: scatterPlotTitleInput,
                         fontSize: 25
                     },
                     legend: {
@@ -200,11 +231,61 @@
 
 
         // ---------------------------------------------------------------------------------
-        // Global field variables
         
-        // Generate required user input fields for each chart
-        function displayFields() {
+        // Create required user input fields for each chart
+        function createPolarAreaFields() {
+            // Title
+            if (!polarAreaTitle) {
+                polarAreaTitle = document.createElement('div');
+                polarAreaTitle.innerHTML = "<label for='title'>Title:</label><input type='text' id='PAtitle'>";
+                document.getElementById("paTitle").appendChild(polarAreaTitle);
+            }
+            else { 
+                polarAreaTitle.remove(); 
+                polarAreaTitle = null;
+            }
+        }
 
+
+        function createHistogramTitle() {
+            // Title
+            if (!histogramTitle) {
+                histogramTitle = document.createElement('div');
+                histogramTitle.innerHTML = "<label for='title'>Title:</label><input type='text' id='Htitle'>";
+                document.getElementById("hTitle").appendChild(histogramTitle);
+            }
+            else { 
+                histogramTitle.remove(); 
+                histogramTitle = null;
+            }
+        }
+
+
+        function createLineGraphFields() {
+            // Title
+            if (!lineGraphTitle) {
+                lineGraphTitle = document.createElement('div');
+                lineGraphTitle.innerHTML = "<label for='title'>Title:</label><input type='text' id='LGtitle'>";
+                document.getElementById("lgTitle").appendChild(lineGraphTitle);
+            }
+            else { 
+                lineGraphTitle.remove(); 
+                lineGraphTitle = null;
+            }
+        }
+
+
+        function createScatterPlotFields() {
+            // Title
+            if (!scatterPlotTitle) {
+                scatterPlotTitle = document.createElement('div');
+                scatterPlotTitle.innerHTML = "<label for='title'>Title:</label><input type='text' id='SPtitle'>";
+                document.getElementById("spTitle").appendChild(scatterPlotTitle);
+            }
+            else { 
+                scatterPlotTitle.remove(); 
+                scatterPlotTitle = null;
+            }
         }
 
     </script>
