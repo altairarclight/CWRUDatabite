@@ -7,6 +7,10 @@ import java.util.Scanner;
 public class FileHandler {
 
 	Object file;
+	
+	public FileHandler() {
+		//body
+	}
 
 	public boolean checkFileType(File file) {
 		String fileName = file.getName();
