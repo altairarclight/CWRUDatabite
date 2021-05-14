@@ -12,6 +12,10 @@ public class DataClean implements IDataClean {
     public DataClean(Double[][] inputData) {
         this.inputData = inputData;
     }
+    
+    public Double[][] getInputdata() {
+        return this.inputData;
+    }
 
     public void editCellVal(Double[][] dataSet, int i, int j, double n) {
         dataSet[i][j] = n;
